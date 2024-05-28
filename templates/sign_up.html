@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Rentify Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .container .title {
+      font-size: 25px;
+      font-weight: 500;
+      position: relative;
+    }
+    .container .title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+    .content form .user-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 20px 0 12px 0;
+    }
+    form .user-details .input-box {
+      margin-bottom: 15px;
+      width: calc(100% / 2 - 20px);
+    }
+    form .input-box span.details {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .user-details .input-box input {
+      height: 45px;
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
+    .user-details .input-box input:focus,
+    .user-details .input-box input:valid {
+      border-color: #9b59b6;
+    }
+    form .button {
+      height: 45px;
+      margin: 35px 0;
+    }
+    form .button input {
+      height: 100%;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+    form .button input:hover {
+      background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    }
+    @media (max-width: 584px) {
+      .container {
+        max-width: 100%;
+      }
+      form .user-details .input-box {
+        margin-bottom: 15px;
+        width: 100%;
+      }
+      .content form .user-details {
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+      .user-details::-webkit-scrollbar {
+        width: 5px;
+      }
+    }
+    .flash-messages {
+      margin: 20px 0;
+      padding: 10px;
+    }
+    .flash-messages ul {
+      list-style-type: none;
+      background-color: #f8d7da;
+      border: 0 solid #f5c6cb;
+      border-radius: 5px;
+    }
+    .flash-messages li {
+      margin-bottom: 5px;
+      color: #ec081d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Sign Up</div>
+    <div class="content">
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+      <form action="/sign_up" method="post">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">First Name</span>
+            <label>
+              <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" value="{{ft_name}}" required>
+            </label>
+          </div>
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <label>
+              <input type="text" id='last_name' name="last_name" placeholder="Enter your last name" value="{{lt_name}}" required>
+            </label>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <label>
+              <input type="email" id='email' name='email' placeholder="Enter your email" value="{{em_id}}" required>
+            </label>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <label>
+              <input type="text" id="phone_number" name="phone_number" placeholder="Enter your number" maxlength="10" value="{{ph_num}}" required>
+            </label>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Rentify Seller Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins',sans-serif;
+    }
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background: linear-gradient(135deg, #fdfdfd, #fafafa);
+    }
+    .container{
+      max-width: 1000px;
+      width: 100%;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .container .title{
+      font-size: 25px;
+      font-weight: 500;
+      position: relative;
+    }
+    .container .title::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+    .user-details .input-box input{
+      height: 45px;
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
+    .user-details .input-box input:focus,
+    .user-details .input-box input:valid{
+      border-color: #9b59b6;
+    }
+    form .category label{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    form .button input{
+      height: 100%;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+    form .button input:hover{
+      background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    }
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 24px;
+      font-weight: 500;
+    }
+    .header .login-icon {
+      cursor: pointer;
+    }
+    .image-item button:hover {
+      background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .image-item {
+      width: 32%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .image-item img {
+      width: 70%;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .image-item button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .image-item button:hover {
+      background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    }
+    .vertical-table {
+      width: 100%;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .vertical-table thead th {
+      background-color: #71b7e6;
+      color: white;
+      padding: 10px;
+      text-align: left;
+      border-bottom: 2px solid #9b59b6;
+    }
+    .vertical-table tbody tr {
+      border-bottom: 1px solid #ddd;
+    }
+    .vertical-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .vertical-table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    .vertical-table tbody td {
+      padding: 10px;
+    }
+    .vertical-table tbody td:first-child {
+      font-weight: 600;
+      width: 30%;
+      background-color: #f0f0f0;
+    }
+    .vertical-table tbody td:last-child {
+      width: 70%;
+    }
+    .flash-messages {
+      margin-bottom: 20px;
+    }
+    .flash-messages ul {
+      list-style: none;
+      padding: 0;
+    }
+    .flash-messages li {
+      background: #ffffff;
+      color: #3652c2;
+      border: 1px solid #3b66e7;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div><a onclick="redirectTo('home')">Rentify</a></div>
+    <div class="login-icon">
+      <a onclick="redirectTo('home')"><i class="material-icons" style="font-size: 30px; padding: 0 30px">person</i></a>
+    </div>
+  </header>
+  <div class="container">
+    <div class="title">Rental Details</div>
+    <div class="content">
+      <form action="" method="post">
+        <div class="flash-messages">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+      </div>
+        <div class="image-container">
+          {% for image_url in image_urls %}
+            <div class="image-item">
+              <img src="{{ image_url }}" alt="Displayed Image">
+            </div>
+          {% endfor %}
+        </div>
+        <div class="vertical-table">
+          <table>
+            <tbody>
+              {% for result in seller_detail %}
+              <tr>
+                <td>Places</td>
+                <td>{{ result[0] }}</td>
+              </tr>
+              <tr>
+                <td>Area</td>
+                <td>{{ result[1] }}</td>
+              </tr>
+              <tr>
+                <td>No of Bedrooms</td>
+                <td>{{ result[2] }}</td>
+              </tr>
+              <tr>
+                <td>No of Bathroom</td>
+                <td>{{ result[3] }}</td>
+              </tr>
+              <tr>
+                <td>Type of Buildings</td>
+                <td>{{ result[4] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </form>
+      <form action="/seller_details" method="get">
+        <div class="button">
+        <input type="submit" name='share_details'  value="I'm Interested">
+      </div>
+    </form>
+
+    </div>
+  </div>
+  <script>
+    function redirectTo(url) {
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>

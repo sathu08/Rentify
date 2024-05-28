@@ -1,0 +1,14 @@
+Dear User,
+
+We hope this message finds you well.
+
+We are pleased to inform you that Mr. show_interest_person has shown interest in one of our buildings. Below are his contact details for your reference:
+
+Name: show_interest_person
+Contact Number:phone
+Email ID: mail_id
+Kindly reach out to him at your earliest convenience to discuss further details and arrange a meeting.
+
+Thank you for your prompt attention to this matter.
+
+Best regards,

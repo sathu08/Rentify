@@ -1,0 +1,18 @@
+Dear User,
+
+We trust this message finds you well.
+
+In order to bolster the security of your account, we have issued a One-Time Password (OTP) for your recent authentication attempt. Below, you'll find your unique OTP:
+
+Your OTP: your_otp
+
+This OTP remains valid for the next 10 minutes and is intended to facilitate your login or transaction process securely. As a precautionary measure, please refrain from sharing this OTP with anyone. Should you not have initiated this request or suspect any discrepancies, kindly reach out to our support team promptly.
+
+We appreciate your attention to this matter.
+
+Warm regards,
+Rentify
+
+Note: This communication is automated. Please abstain from replying to this email.
+
+For further assistance, please refer to our support page or contact our dedicated customer service team.

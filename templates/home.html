@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Rentify Home Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins',sans-serif;
+    }
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background: linear-gradient(135deg, #fdfdfd, #fafafa);
+    }
+    .container{
+      max-width: 1000px;
+      width: 100%;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .container .title{
+      font-size: 25px;
+      font-weight: 500;
+      position: relative;
+    }
+    .container .title::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+    .user-details .input-box input{
+      height: 45px;
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
+    .user-details .input-box input:focus,
+    .user-details .input-box input:valid{
+      border-color: #9b59b6;
+    }
+    form .category label{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    form .button input{
+      height: 100%;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+    form .button input:hover{
+      background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    }
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 24px;
+      font-weight: 500;
+    }
+    .header .search-bar {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 0 20%;
+    }
+    .header .search-bar form {
+      display: flex;
+      width: 100%;
+      max-width: 900px;
+    }
+    .header .search-bar input[type="text"] {
+      height: 35px;
+      width: 100%;
+      padding: 0 10px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+    }
+    .header .search-bar button {
+      height: 35px;
+      padding: 0 10px;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      background: #fff;
+      cursor: pointer;
+    }
+    .header .login-icon,
+    .header .sell-property
+    {
+      cursor: pointer;
+    }
+    .header .sell-property {
+      padding: 0 30px;
+      font-size: 20px;
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .image-item {
+      width: 32%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .image-item img {
+      width: 70%;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .image-item button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .image-item button:hover {
+      background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    }
+    .flash-messages {
+      margin-bottom: 20px;
+    }
+    .flash-messages ul {
+      list-style: none;
+      padding: 0;
+    }
+    .flash-messages li {
+      background: #ffdddd;
+      color: #a94442;
+      border: 1px solid #a94442;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div><a onclick="redirectTo('home')">Rentify</a></div>
+    <div class="search-bar">
+      <form action="/home" method="post">
+        <label for="query"></label><input type="text" id="query" name="query" value='{{search_value}}' placeholder="Search...">
+        <button type="submit"><i class="material-icons">search</i></button>
+      </form>
+    </div>
+    <div class="sell-property">
+      <a onclick="redirectTo('sell')">Sell Property</a>
+    </div>
+    <div class="login-icon">
+      {% if user %}
+        <span>User Signed</span>
+      {% else %}
+        <a onclick="redirectTo('login')">Sign In</a>
+      {% endif %}
+    </div>
+  </header>
+  <div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <div class="flash-messages">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+      </div>
+        <div class="image-container">
+          {% for image_url in image_urls %}
+            <div class="image-item">
+              <img src="{{ image_url }}" alt="Displayed Image">
+              <h1>{{type_of_building[loop.index0]}}</h1>
+              <form action="/home" method="get">
+              <button name="seller_details" value="{{product_id[loop.index0]}}"> View</button>
+              </form>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+  <script>
+    function redirectTo(url) {
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>
